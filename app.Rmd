@@ -40,4 +40,18 @@ $$y^{(i)} = \theta^{T}x^{(i)} + \epsilon^{(i)}$$ Acest termen de eroare este „
 
 $$\epsilon^{(i)} \sim {\sf N}(0, \sigma^{2})$$
 
-Astfel putem calcula probabilitatea lui $\epsilon^{(i)}$ ca fiind: $$P(\epsilon^{(i)}) = \displaystyle \frac{1}{\sqrt{2 \pi}\sigma}$$
+Astfel putem calcula probabilitatea lui $\epsilon^{(i)}$ ca fiind: $$P(\epsilon^{(i)}) = \displaystyle \frac{1}{\sqrt{2 \pi}\sigma} exp(- \displaystyle \frac{(\epsilon^{(i)})^{2}}{2 \sigma^{2}})$$
+
+Cum $\epsilon$ este o funcţie in $x$ şi $y$ atunci putem rescrie: $$P(y^{(i)}|x^{(i)};\theta) = \displaystyle \frac{1}{\sqrt{2 \pi}\sigma} exp(- \displaystyle \frac{ (y^{(i)} - \theta^{T}x^{(i)})^{2}}{2 \sigma^{2}})$$
+
+Important, dacă valoarea observată și prezisă sunt apropiate, partea exponentă a ecuației se apropie de 1. Dacă valoarea observată și prezisă sunt îndepărtate, partea exponentă se apropie de 0. Astfel, dacă valoarea observată și prezisă sunt îndepărtate, probabilitatea scade.
+
+![](https://github.com/Cuadrupla/Linear_Regression_Prediction_PS_Project/blob/main/gaussian_linear.png?raw=true)
+
+Avem probabilitatea unui eșantion de antrenament. Dar probabilitatea întregului set de date? Presupunem ca evenimentele sunt toate independente: $$P(x_{1}...x_{m}) = \prod_{i = 1}^{m} P(x_{i})$$
+
+Deci putem aplica pe formula anterioară şi obţinem "Likehood-ul setului de date": $$L(\theta) = \prod_{i = 1}^{m} \displaystyle \frac{1}{\sqrt{2 \pi}\sigma} exp(- \displaystyle \frac{ (y^{(i)} - \theta^{T}x^{(i)})^{2}}{2 \sigma^{2}})$$
+
+Această ecuație este cunoscută sub numele de „probabilitatea parametrilor theta". Cu cât probabilitatea este mai mare, cu atât este mai mare probabilitatea de a observa setul de date care a fost dat modelului. Cu cât probabilitatea este mai mare, cu atât modelul este mai precis.
+
+Ceea ce fac algoritmii de învățare este să maximizeze această probabilitate. Aceasta este cunoscută sub denumirea de estimare a probabilității maxime sau MLE.
