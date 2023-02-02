@@ -1,0 +1,43 @@
+## Regresia liniara in Teoria probabilitatilor
+
+### Noţiuni de bază despre regresia liniară
+
+O regresie liniară se referă la găsirea unui model liniar care se potriveşte cel mai bine unui set de date, pe care putem aplica un astfel de modelare.
+
+De exemplu, într-o regresie liniară simplă cu o variabilă de intrare (adică o caracterstică), modelul liniar este o funcţie de forma $y = mx + b$, unde $m$ este panta şi $b$ translaţia.
+
+În cazul de faţă modelul liniar este bun pentru a minimiza suma pătratelor erorilor. (Definim eroarea ca diferenţa dintre valoarea observată şi cea prezisă).
+
+![](https://github.com/Cuadrupla/Linear_Regression_Prediction_PS_Project/blob/main/linear_model.png?raw=true)
+
+Deci știm că cel mai bun model este cel care minimizează suma erorilor pătrate. Dar de ce? De ce erori pătrate? De ce nu valoarea absolută a erorii?
+
+Aici intervine interpretarea probabilistică.
+
+Interpretarea probabilistică oferă o perspectivă asupra motivului pentru care minimizăm suma erorilor pătrate.
+
+Înainte de a trece la interpretarea probabilistică, să ne aliniem mai întâi la o terminologie.
+
+Mai întâi, să folosim $\theta$ pentru a simboliza parametrii modelului liniar. Să folosim $h(x)$ pentru a reprezenta modelul. Modelul este o funcție a lui $x$, parametrizată prin $\theta$.
+
+În regresia liniară simplă în care avem doar 1 caracteristică, $h(x)$ poate fi scris ca: $$h(x) = \theta_{0} + \theta_{1}x$$
+
+Pentru cazul cu "$n$" caracteristici formula devine: $$h(x) = \theta_{0} + \theta_{1}x_{1} + ... + \theta_{n}x_{n}$$
+
+Folosind algebra liniară, putem pune toate $\theta$-urile într-un vector și valorile de intrare într-un alt vector. Astfel, $h(x)$ devine un produs al acelor 2 vectori: $$h(x) = [\theta_{0},...,\theta_{n}]^{T} * [x_{0},...,x_{n}] (x_{0} = 1)$$ $$h(x) = \theta^{T}x$$
+
+Estimarea pentru eșantionul i de antrenament, conform modelului, este: $$h(x^{(i)}) = \theta^{T}x^{(i)}$$
+
+## Interpretarea probabilistică a regresiei liniare
+
+Regresia liniară construieşte 2 ipoteze.
+
+### - Valoarea observată a lui $y$ pentru un $x$ dat este valoarea prezisă plus un termen de eroare.
+
+$$y^{(i)} = \theta^{T}x^{(i)} + \epsilon^{(i)}$$ Acest termen de eroare este „reziduul" sau valoarea estimată observată minus. Trebuie să ne amintim că în regresia liniară, dorim să minimizăm suma pătratelor erorilor. $$\epsilon^{(i)} = y^{(i)} - \theta^{T}x^{(i)}$$$$\sum_{i = 1}^{m} (y^{(i)} - \theta^{T}x^{(i)})^{2} minim$$
+
+### - Acest termen de eroare este distribuit independent și identic. Are o distribuție Normală (adică Gaussiană) cu medie 0 și varianță $\sigma^{2}$.
+
+$$\epsilon^{(i)} \sim {\sf N}(0, \sigma^{2})$$
+
+Astfel putem calcula probabilitatea lui $\epsilon^{(i)}$ ca fiind: $$P(\epsilon^{(i)}) = \displaystyle \frac{1}{\sqrt{2 \pi}\sigma}$$
